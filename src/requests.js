@@ -17,11 +17,13 @@ export const createAnecdote = async (newAnecdote) => {
     body: JSON.stringify(newAnecdote)
   })
 
+  const data = await response.json()
+
   if (!response.ok) {
-    throw new Error('Failed to create anecdote')
+    throw new Error(data.error)
   }
 
-  return response.json()
+  return data
 }
 
 export const updateAnecdote = async (updatedAnecdote) => {
